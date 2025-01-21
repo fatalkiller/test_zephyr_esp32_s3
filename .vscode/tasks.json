@@ -1,0 +1,90 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "West Build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "linux": {
+                "command": "${userHome}/zephyrproject/.venv/bin/west"
+            },
+            "args": [
+                // "build",
+                // "-p",
+                // "auto",
+                // "-b",
+                // "user_node/esp32s3/procpu"
+                "build",
+                "--build-dir",
+                "${workspaceFolder}/build_dev",
+                "${workspaceFolder}",
+                "-p",
+                "auto",
+                "-b",
+                "walter/esp32s3/procpu",
+                "--sysbuild",
+                "--",
+                "-DNCS_TOOLCHAIN_VERSION=NONE",
+                "-DCONFIG_DEBUG_OPTIMIZATIONS=y",
+                "-DCONFIG_DEBUG_THREAD_INFO=y",
+                "-DCONF_FILE=${workspaceFolder}/conf/prj.conf",
+                "-DEXTRA_CONF_FILE=${workspaceFolder}/conf/prj_debug.conf",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "West Flash",
+            "type": "shell",
+            "linux": {
+                "command": "${userHome}/zephyrproject/.venv/bin/west"
+            },
+            "args": [
+                "flash",
+                "-d",
+                "${workspaceFolder}/build_dev",
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "West Monitor",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/build_dev"
+            },
+            "linux": {
+                "command": "${userHome}/zephyrproject/.venv/bin/west"
+            },
+            "args": [
+                "espressif",
+                "monitor",
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "West Debug",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/build_dev"
+            },
+            "linux": {
+                "command": "${userHome}/zephyrproject/.venv/bin/west"
+            },
+            "args": [
+                "debug",
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+    ]
+}

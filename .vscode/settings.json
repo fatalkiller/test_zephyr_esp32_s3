@@ -1,0 +1,10 @@
+{
+    //https://github.com/beriberikix/zephyr-vscode-example/tree/main
+    // Hush CMake
+    "cmake.configureOnOpen": false,
+    // IntelliSense
+    "C_Cpp.default.compilerPath": "${userHome}/zephyr-sdk-0.17.0/xtensa-espressif_esp32s3_zephyr-elf/bin/xtensa-espressif_esp32s3_zephyr-elf-gcc",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build_dev/user-node/compile_commands.json",
+    // File Associations
+    "files.associations": {},
+}
